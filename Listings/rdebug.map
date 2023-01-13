@@ -1,8 +1,8 @@
 
 - NASM Map file ---------------------------------------------------------------
 
-Source file:  ./Utils/RDEBUG/rdebug.asm
-Output file:  ./Utils/RDEBUG/Binaries/RDEBUG.COM
+Source file:  rdebug.asm
+Output file:  ./Binaries/RDEBUG.COM
 
 -- Program origin -------------------------------------------------------------
 

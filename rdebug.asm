@@ -2,7 +2,7 @@
 ;Tests if address of Int 38h is not equal to Int 39h
 ;If it is not, it scans the 64Kb block after the ROMBIOS for the string SCPBIOS
 ;If it finds it, it triggers Int 38h to enter the debugger
-[map all ./Utils/RDEBUG/Listings/rdebug.map]
+[map all ./Listings/rdebug.map]
 [DEFAULT REL]
 BITS 64
     mov eax, 3538h  ;Get the ptr for interrupt 38h in rbx
