@@ -6,10 +6,10 @@
      6                                  [DEFAULT REL]
      7                                  BITS 64
      8 00000000 B838350000                  mov eax, 3538h  ;Get the ptr for interrupt 38h in rbx
-     9 00000005 CD41                        int 41h
+     9 00000005 CD21                        int 21h
     10 00000007 4889DF                      mov rdi, rbx
     11 0000000A B839350000                  mov eax, 3539h
-    12 0000000F CD41                        int 41h
+    12 0000000F CD21                        int 21h
     13 00000011 4839DF                      cmp rdi, rbx
     14 00000014 740B                        je .badExit
     15                                      ;Now we scan 64Kb from rdi
@@ -21,9 +21,9 @@
     21                                  .badExit:
     22 00000021 488D1526000000              lea rdx, badMsg
     23 00000028 B800090000                  mov eax, 0900h
-    24 0000002D CD41                        int 41h
+    24 0000002D CD21                        int 21h
     25 0000002F B8FF4C0000                  mov eax, 4CFFh
-    26 00000034 CD41                        int 41h
+    26 00000034 CD21                        int 21h
     27                                  .potential:
     28 00000036 50                          push rax
     29 00000037 57                          push rdi

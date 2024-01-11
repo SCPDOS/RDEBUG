@@ -6,10 +6,10 @@
 [DEFAULT REL]
 BITS 64
     mov eax, 3538h  ;Get the ptr for interrupt 38h in rbx
-    int 41h
+    int 21h
     mov rdi, rbx
     mov eax, 3539h
-    int 41h
+    int 21h
     cmp rdi, rbx
     je .badExit
     ;Now we scan 64Kb from rdi
@@ -21,9 +21,9 @@ BITS 64
 .badExit:
     lea rdx, badMsg
     mov eax, 0900h
-    int 41h
+    int 21h
     mov eax, 4CFFh
-    int 41h
+    int 21h
 .potential:
     push rax
     push rdi
