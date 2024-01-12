@@ -19,7 +19,7 @@
     19 0000001D F2AE                        repne scasb
     20 0000001F 7415                        je .potential
     21                                  .badExit:
-    22 00000021 488D1526000000              lea rdx, badMsg
+    22 00000021 488D1552000000              lea rdx, badMsg
     23 00000028 B800090000                  mov eax, 0900h
     24 0000002D CD21                        int 21h
     25 0000002F B8FF4C0000                  mov eax, 4CFFh
@@ -34,11 +34,24 @@
     33 00000048 5F                          pop rdi
     34 00000049 58                          pop rax
     35 0000004A 75D1                        jne .keepSearching
-    36 0000004C CD38                        int 38h ;Exits via DOS
-    37                                  
-    38 0000004E 5343502F42494F5320-     badMsg:  db "SCP/BIOS Debugger Not Detected",0Dh,0Ah,"$"
-    38 00000057 446562756767657220-
-    38 00000060 4E6F74204465746563-
-    38 00000069 7465640D0A24       
-    38          ------------------       info: assembly required 1+2+2 passes
+    36                                      ; If found, save the original Int 40h handler
+    37 0000004C B840350000                  mov eax, 3540h  ;Get the original handles
+    38 00000051 CD21                        int 21h
+    39 00000053 48891D41000000              mov qword [hdlr], rbx
+    40 0000005A 488D1509000000              lea rdx, intHdlr
+    41 00000061 B840250000                  mov eax, 2540h
+    42 00000066 CD21                        int 21h
+    43 00000068 CD38                        int 38h ;Call the debugger, hooking our return point
+    44                                  intHdlr:
+    45 0000006A 488B152A000000              mov rdx, qword [hdlr]
+    46 00000071 B840250000                  mov eax, 2540h
+    47 00000076 CD21                        int 21h
+    48 00000078 CD20                        int 20h
+    49                                  
+    50 0000007A 5343502F42494F5320-     badMsg:  db "SCP/BIOS Debugger Not Detected",0Dh,0Ah,"$"
+    50 00000083 446562756767657220-
+    50 0000008C 4E6F74204465746563-
+    50 00000095 7465640D0A24       
+    51 0000009B 0000000000000000        hdlr dq 0   ; Original interrupt handler here
+    51          ------------------       info: assembly required 1+2+2 passes
 

@@ -11,14 +11,14 @@ Output file:  ./Binaries/RDEBUG.COM
 -- Sections (summary) ---------------------------------------------------------
 
 Vstart            Start             Stop              Length    Class     Name
-               0                 0                6F  0000006F  progbits  .text
+               0                 0                A3  000000A3  progbits  .text
 
 -- Sections (detailed) --------------------------------------------------------
 
 ---- Section .text ------------------------------------------------------------
 
 class:     progbits
-length:                  6F
+length:                  A3
 start:                    0
 align:     not defined
 follows:   not defined
@@ -31,8 +31,10 @@ vfollows:  not defined
 ---- Section .text ------------------------------------------------------------
 
 Real              Virtual           Name
-              1D                1D  badMsg.keepSearching
-              21                21  badMsg.badExit
-              36                36  badMsg.potential
-              4E                4E  badMsg
+              1D                1D  hdlr.keepSearching
+              21                21  hdlr.badExit
+              36                36  hdlr.potential
+              6A                6A  intHdlr
+              7A                7A  badMsg
+              9B                9B  hdlr
 

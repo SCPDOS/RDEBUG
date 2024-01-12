@@ -33,6 +33,19 @@ BITS 64
     pop rdi
     pop rax
     jne .keepSearching
-    int 38h ;Exits via DOS
+    ; If found, save the original Int 40h handler
+    mov eax, 3540h  ;Get the original handles
+    int 21h
+    mov qword [hdlr], rbx
+    lea rdx, intHdlr
+    mov eax, 2540h
+    int 21h
+    int 38h ;Call the debugger, hooking our return point
+intHdlr:
+    mov rdx, qword [hdlr]
+    mov eax, 2540h
+    int 21h
+    int 20h
 
 badMsg:  db "SCP/BIOS Debugger Not Detected",0Dh,0Ah,"$"
+hdlr dq 0   ; Original interrupt handler here
