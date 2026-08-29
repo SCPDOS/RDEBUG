@@ -1,3 +1,3 @@
 #!/bin/sh
 rdebug:
-	nasm rdebug.asm -o ./Binaries/RDEBUG.COM -f bin -l ./Listings/rdebug.lst -O0v
+	nasm rdebug.asm -o ./bin/RDEBUG.COM -f bin -l ./lst/rdebug.lst -O0v
